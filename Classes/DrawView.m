@@ -22,6 +22,7 @@
 
 @implementation DrawView
 
+#pragma mark - Init
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -37,8 +38,11 @@
     }
     return self;
 }
+#pragma mark - UI Configuration
 - (void)setupUI{
+    // Array of all the paths the user will draw.
     paths = [NSMutableArray new];
+    // Default colors for drawing.
     self.backgroundColor = [UIColor whiteColor];
     strokeColor = [UIColor redColor];
     _canEdit = YES;
@@ -49,11 +53,13 @@
 - (void)strokeColor:(UIColor *)color{
     strokeColor = color;
 }
+#pragma mark - View Drawing
 - (void)drawRect:(CGRect)rect{
     // Drawing code
     if (!isAnimating){
         [strokeColor setStroke];
         if (!isDrawingExisting){
+            // Need to merge all the paths into a single path.
             for (UIBezierPath *path in paths){
                 [path strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
             }
@@ -76,8 +82,7 @@
         CGAffineTransform scaleTransform = CGAffineTransformMakeScale(2, 2);
         [bezierPath applyTransform:scaleTransform];
     }
-    // Center the character within the view.
-    // Center character
+    // Center the drawing within the view.
     CGRect charBounds = bezierPath.bounds;
     CGFloat charX = CGRectGetMidX(charBounds);
     CGFloat charY = CGRectGetMidY(charBounds);
@@ -88,14 +93,21 @@
     [bezierPath applyTransform:CGAffineTransformMakeTranslation(centerX-charX, centerY-charY)];
     
     [self setNeedsDisplay];
+    
     // Debugging bounds view.
-    UIView *blockView = [[UIView alloc] initWithFrame:CGRectMake(bezierPath.bounds.origin.x, bezierPath.bounds.origin.y, bezierPath.bounds.size.width, bezierPath.bounds.size.height)];
-    [blockView setBackgroundColor:[UIColor blackColor]];
-    [blockView setAlpha:0.5];
-//    [self addSubview:blockView];
+    if (_debugBox){
+        UIView *blockView = [[UIView alloc] initWithFrame:CGRectMake(bezierPath.bounds.origin.x, bezierPath.bounds.origin.y, bezierPath.bounds.size.width, bezierPath.bounds.size.height)];
+        [blockView setBackgroundColor:[UIColor blackColor]];
+        [blockView setAlpha:0.5];
+        [self addSubview:blockView];
+    }
 }
 - (void)drawBezier:(UIBezierPath *)path{
     [self drawPath:path.CGPath];
+}
+- (IBAction)undoDrawing:(id)sender{
+    [paths removeLastObject];
+    [self setNeedsDisplay];
 }
 #pragma mark - Animation
 - (void)animatePath{
@@ -107,8 +119,10 @@
     }else{
         animatingPath = bezierPath;
     }
+    // Clear out the existing view.
     isAnimating = YES;
     [self setNeedsDisplay];
+    // Create shape layer that stores the path.
     animateLayer = [[CAShapeLayer alloc] init];
     animateLayer.fillColor = nil;
     animateLayer.path = animatingPath.CGPath;
@@ -117,6 +131,7 @@
     animateLayer.lineWidth = 10.0f;
     animateLayer.miterLimit = 0.0f;
     animateLayer.lineCap = @"round";
+    // Create animation of path of the stroke end.
     CABasicAnimation *animation = [[CABasicAnimation alloc] init];
     animation.duration = 3.0;
     animation.fromValue = @(0.0f);
@@ -124,10 +139,6 @@
     animation.delegate = self;
     [animateLayer addAnimation:animation forKey:@"strokeEnd"];
     [self.layer addSublayer:animateLayer];
-}
-- (IBAction)undoDrawing:(id)sender{
-    [paths removeLastObject];
-    [self setNeedsDisplay];
 }
 #pragma mark - Animation Delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
@@ -155,9 +166,6 @@
         [bezierPath addLineToPoint:[movedTouch locationInView:self]];
         [self setNeedsDisplay];
     }
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    
 }
 
 @end

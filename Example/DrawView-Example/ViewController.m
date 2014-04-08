@@ -27,7 +27,6 @@
     // Drawing view setup.
     [drawingView setBackgroundColor:[UIColor whiteColor]];
     [drawingView strokeColor:[UIColor blackColor]];
-//    [self loadArchived:nil];
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];

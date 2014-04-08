@@ -12,6 +12,8 @@
 
 // If the drawing view can be drawn on. By default canEdit is true.
 @property (nonatomic) BOOL canEdit;
+// Debug value to add a box around the path when drawing a existing path.
+@property (nonatomic) BOOL debugBox;
 // Background color of the drawing view.
 - (void)backgroundColor:(UIColor *)color;
 // The stroke color of the path.
