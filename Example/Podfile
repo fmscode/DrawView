@@ -1,9 +1,3 @@
-platform :ios
+platform :ios, '7.0'
 
 pod "DrawView", :path => "../"
-
-target "Demo" do
-end
-
-target "DemoTests" do
-end
