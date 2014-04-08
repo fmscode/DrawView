@@ -41,6 +41,7 @@
         [bezPath appendPath:path];
     }
     // Display archived path.
+    [drawingView setDebugBox:YES];
     [drawingView drawBezier:bezPath];
 }
 @end
