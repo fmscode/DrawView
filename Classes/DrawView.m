@@ -52,7 +52,7 @@
 - (void)drawRect:(CGRect)rect{
     // Drawing code
     if (!isAnimating){
-        [[UIColor redColor] setStroke];
+        [strokeColor setStroke];
         if (!isDrawingExisting){
             for (UIBezierPath *path in paths){
                 [path strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
@@ -102,7 +102,7 @@
     [self setNeedsDisplay];
     animateLayer = [[CAShapeLayer alloc] init];
     animateLayer.frame = self.frame;
-    animateLayer.strokeColor = [[UIColor redColor] CGColor];
+    animateLayer.strokeColor = [strokeColor CGColor];
     animateLayer.lineWidth = 10.0;
     animateLayer.miterLimit = 0;
     animateLayer.lineCap = @"round";
