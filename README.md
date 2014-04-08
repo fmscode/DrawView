@@ -27,6 +27,9 @@ To animate the current path in the draw view simply call
 	
 	- (void)animatePath;
 
+## Undo Support
+To support undo simply add a button with a target to the ```DrawView``` instance, and set the action to ```undoDrawing:```. See example for more details.
+
 ## Debugging Drawing
 To debug the path simply set ```debugBox``` to ```true```. This will add a grey box around the bounds of the current path.
 
