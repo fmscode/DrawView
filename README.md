@@ -8,7 +8,7 @@ Using CocoaPods
 
 In the storyboard under the views Identity Inspector set the view class to ```DrawView```. 
 
-![](readmeassets/Screen_Shot_1.png)
+![](readmeassets/screen_shot_1.png)
 
 In the implementation file you can setup the drawing view. 
 
