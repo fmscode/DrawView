@@ -1,6 +1,8 @@
 # DrawView
 Subclass of UIView that supports drawing.
 
+![](readmeassets/screen_shot_3.png)
+
 # Basic Usage
 Using CocoaPods
 
