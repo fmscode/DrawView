@@ -39,7 +39,7 @@
 }
 - (void)setupUI{
     paths = [NSMutableArray new];
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor whiteColor];
     strokeColor = [UIColor redColor];
     _canEdit = YES;
 }
@@ -64,7 +64,7 @@
 }
 - (void)drawPath:(CGPathRef)path{
     isDrawingExisting = YES;
-    
+    _canEdit = NO;
     bezierPath = [UIBezierPath new];
     bezierPath.CGPath = path;
     bezierPath.lineCapStyle = kCGLineCapRound;
@@ -87,6 +87,7 @@
     
     [bezierPath applyTransform:CGAffineTransformMakeTranslation(centerX-charX, centerY-charY)];
     
+    [self setNeedsDisplay];
     // Debugging bounds view.
     UIView *blockView = [[UIView alloc] initWithFrame:CGRectMake(bezierPath.bounds.origin.x, bezierPath.bounds.origin.y, bezierPath.bounds.size.width, bezierPath.bounds.size.height)];
     [blockView setBackgroundColor:[UIColor blackColor]];
@@ -98,17 +99,26 @@
 }
 #pragma mark - Animation
 - (void)animatePath{
+    UIBezierPath *animatingPath = [UIBezierPath new];
+    if (_canEdit){
+        for (UIBezierPath *path in paths){
+            [animatingPath appendPath:path];
+        }
+    }else{
+        animatingPath = bezierPath;
+    }
     isAnimating = YES;
     [self setNeedsDisplay];
     animateLayer = [[CAShapeLayer alloc] init];
+    animateLayer.fillColor = nil;
+    animateLayer.path = animatingPath.CGPath;
     animateLayer.frame = self.frame;
     animateLayer.strokeColor = [strokeColor CGColor];
-    animateLayer.lineWidth = 10.0;
-    animateLayer.miterLimit = 0;
+    animateLayer.lineWidth = 10.0f;
+    animateLayer.miterLimit = 0.0f;
     animateLayer.lineCap = @"round";
-    [animateLayer setPath:bezierPath.CGPath];
     CABasicAnimation *animation = [[CABasicAnimation alloc] init];
-    animation.duration = 4.0;
+    animation.duration = 3.0;
     animation.fromValue = @(0.0f);
     animation.toValue = @(1.0f);
     animation.delegate = self;
