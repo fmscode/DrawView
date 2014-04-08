@@ -27,8 +27,6 @@ To animate the current path in the draw view simply call
 	
 	- (void)animatePath;
 
-![](readmeassets/animation.gif)
-
 ## Debugging Drawing
 To debug the path simply set ```debugBox``` to ```true```. This will add a grey box around the bounds of the current path.
 
