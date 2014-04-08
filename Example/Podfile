@@ -1,0 +1,9 @@
+platform :ios
+
+pod "DrawView", :path => "../"
+
+target "Demo" do
+end
+
+target "DemoTests" do
+end
