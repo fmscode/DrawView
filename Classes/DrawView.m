@@ -120,8 +120,12 @@
 }
 - (UIBezierPath *)bezierPathRepresentation{
     UIBezierPath *singleBezPath = [UIBezierPath new];
-    for (UIBezierPath *path in paths){
-        [singleBezPath appendPath:path];
+    if (paths.count > 0){
+        for (UIBezierPath *path in paths){
+            [singleBezPath appendPath:path];
+        }
+    }else{
+        singleBezPath = bezierPath;
     }
     return singleBezPath;
 }

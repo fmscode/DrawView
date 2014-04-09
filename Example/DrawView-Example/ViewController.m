@@ -37,15 +37,10 @@
 }
 - (IBAction)loadArchived:(id)sender{
     // Load an archived array of bezier paths
-    UIBezierPath *bezPath = [UIBezierPath new];
-    NSData *testPath = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"]];
-    NSArray *paths = [NSKeyedUnarchiver unarchiveObjectWithData:testPath];
-    for (UIBezierPath *path in paths){
-        [bezPath appendPath:path];
-    }
+    UIBezierPath *path = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"test-path" ofType:@"txt"]];
     // Display archived path.
     [drawingView setDebugBox:YES];
-    [drawingView drawBezier:bezPath];
+    [drawingView drawBezier:path];
 }
 - (IBAction)saveDrawing:(id)sender{
     UIActionSheet *saveSheet = [[UIActionSheet alloc] initWithTitle:@"Save" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera Roll",@"UIImage",@"UIBezierPath", nil];

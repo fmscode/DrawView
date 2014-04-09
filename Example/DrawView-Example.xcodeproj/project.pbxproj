@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB69267D18F54F0200B15403 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB69267C18F54F0200B15403 /* AssetsLibrary.framework */; };
+		DB69268718F557B100B15403 /* test-path.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB69268618F557B100B15403 /* test-path.txt */; };
 		DB7EA51D18F420EF001260A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA51C18F420EF001260A5 /* Foundation.framework */; };
 		DB7EA51F18F420EF001260A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA51E18F420EF001260A5 /* CoreGraphics.framework */; };
 		DB7EA52118F420EF001260A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA52018F420EF001260A5 /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		DB7EA53E18F420EF001260A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA52018F420EF001260A5 /* UIKit.framework */; };
 		DB7EA54618F420EF001260A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB7EA54418F420EF001260A5 /* InfoPlist.strings */; };
 		DB7EA54818F420EF001260A5 /* DrawView_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7EA54718F420EF001260A5 /* DrawView_ExampleTests.m */; };
-		DB7EA55218F42490001260A5 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB7EA55118F42490001260A5 /* test.txt */; };
 		F911AD003390424E95230F4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA77B0D6375B4F0DAF82B6CD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +39,7 @@
 /* Begin PBXFileReference section */
 		A79E287A9DD5489E94677930 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DB69267C18F54F0200B15403 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		DB69268618F557B100B15403 /* test-path.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-path.txt"; sourceTree = "<group>"; };
 		DB7EA51918F420EF001260A5 /* DrawView-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DrawView-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7EA51C18F420EF001260A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB7EA51E18F420EF001260A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,7 +59,6 @@
 		DB7EA54318F420EF001260A5 /* DrawView-ExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DrawView-ExampleTests-Info.plist"; sourceTree = "<group>"; };
 		DB7EA54518F420EF001260A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DB7EA54718F420EF001260A5 /* DrawView_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawView_ExampleTests.m; sourceTree = "<group>"; };
-		DB7EA55118F42490001260A5 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		EA77B0D6375B4F0DAF82B6CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,7 +129,7 @@
 				DB7EA52E18F420EF001260A5 /* Main.storyboard */,
 				DB7EA53118F420EF001260A5 /* ViewController.h */,
 				DB7EA53218F420EF001260A5 /* ViewController.m */,
-				DB7EA55118F42490001260A5 /* test.txt */,
+				DB69268618F557B100B15403 /* test-path.txt */,
 				DB7EA53418F420EF001260A5 /* Images.xcassets */,
 				DB7EA52318F420EF001260A5 /* Supporting Files */,
 			);
@@ -243,9 +243,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB69268718F557B100B15403 /* test-path.txt in Resources */,
 				DB7EA53518F420EF001260A5 /* Images.xcassets in Resources */,
 				DB7EA52718F420EF001260A5 /* InfoPlist.strings in Resources */,
-				DB7EA55218F42490001260A5 /* test.txt in Resources */,
 				DB7EA53018F420EF001260A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
