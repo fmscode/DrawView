@@ -36,3 +36,14 @@ To support undo simply add a button with a target to the ```DrawView``` instance
 To debug the path simply set ```debugBox``` to ```true```. This will add a grey box around the bounds of the current path.
 
 ![](readmeassets/screen_shot_2.png)
+
+## Reading Drawing View
+There are two ways to read what is currently in the drawing view. Either call ```imageRepresentation``` which will return a UIImage that can be later used in a email or to save to the users Camera Roll. Or call ```bezierPathRepresentation``` which returns a single bezier path that can be archived and restored within your app. See the example project for more information.
+
+			// How to read the drawing view into a image and save to the camera roll.
+            UIImage *drawingImage = [drawingView imageRepresentation];
+            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            [library writeImageToSavedPhotosAlbum:drawingImage.CGImage orientation:ALAssetOrientationUp completionBlock:^(NSURL *assetURL, NSError *error) {
+                NSLog(@"%@",assetURL);
+                NSLog(@"%@",error);
+            }];
