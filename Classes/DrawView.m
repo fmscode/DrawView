@@ -109,6 +109,22 @@
     [paths removeLastObject];
     [self setNeedsDisplay];
 }
+#pragma mark - View Draw Reading
+- (UIImage *)imageRepresentation{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [self.layer renderInContext:context];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
+}
+- (UIBezierPath *)bezierPathRepresentation{
+    UIBezierPath *singleBezPath = [UIBezierPath new];
+    for (UIBezierPath *path in paths){
+        [singleBezPath appendPath:path];
+    }
+    return singleBezPath;
+}
 #pragma mark - Animation
 - (void)animatePath{
     UIBezierPath *animatingPath = [UIBezierPath new];

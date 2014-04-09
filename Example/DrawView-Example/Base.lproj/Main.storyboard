@@ -30,6 +30,12 @@
                                             <action selector="undoDrawing:" destination="e1n-uE-zuv" id="34H-tt-JjI"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lGp-wF-vh6"/>
+                                    <barButtonItem systemItem="action" id="3Fu-wL-ejF">
+                                        <connections>
+                                            <action selector="saveDrawing:" destination="vXZ-lx-hvc" id="ENw-6S-EQM"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

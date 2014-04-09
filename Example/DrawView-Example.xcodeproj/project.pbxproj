@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB69267D18F54F0200B15403 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB69267C18F54F0200B15403 /* AssetsLibrary.framework */; };
 		DB7EA51D18F420EF001260A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA51C18F420EF001260A5 /* Foundation.framework */; };
 		DB7EA51F18F420EF001260A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA51E18F420EF001260A5 /* CoreGraphics.framework */; };
 		DB7EA52118F420EF001260A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA52018F420EF001260A5 /* UIKit.framework */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		A79E287A9DD5489E94677930 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		DB69267C18F54F0200B15403 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DB7EA51918F420EF001260A5 /* DrawView-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DrawView-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7EA51C18F420EF001260A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB7EA51E18F420EF001260A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB69267D18F54F0200B15403 /* AssetsLibrary.framework in Frameworks */,
 				DB7EA51F18F420EF001260A5 /* CoreGraphics.framework in Frameworks */,
 				DB7EA52118F420EF001260A5 /* UIKit.framework in Frameworks */,
 				DB7EA51D18F420EF001260A5 /* Foundation.framework in Frameworks */,
@@ -108,6 +111,7 @@
 		DB7EA51B18F420EF001260A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB69267C18F54F0200B15403 /* AssetsLibrary.framework */,
 				DB7EA51C18F420EF001260A5 /* Foundation.framework */,
 				DB7EA51E18F420EF001260A5 /* CoreGraphics.framework */,
 				DB7EA52018F420EF001260A5 /* UIKit.framework */,

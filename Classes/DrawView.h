@@ -24,5 +24,9 @@
 - (void)drawBezier:(UIBezierPath *)path;
 // Animate the current path.
 - (void)animatePath;
+// Current UIBezierPath
+- (UIBezierPath *)bezierPathRepresentation;
+// Current UIImage of drawing view
+- (UIImage *)imageRepresentation;
 
 @end

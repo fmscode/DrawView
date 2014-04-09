@@ -8,10 +8,13 @@
 
 #import "ViewController.h"
 #import <DrawView.h>
-@interface ViewController () {
+#import <AssetsLibrary/AssetsLibrary.h>
+
+@interface ViewController () <UIActionSheetDelegate> {
     IBOutlet DrawView *drawingView;
 }
 - (IBAction)loadArchived:(id)sender;
+- (IBAction)saveDrawing:(id)sender;
 @end
 
 @implementation ViewController
@@ -43,5 +46,28 @@
     // Display archived path.
     [drawingView setDebugBox:YES];
     [drawingView drawBezier:bezPath];
+}
+- (IBAction)saveDrawing:(id)sender{
+    UIActionSheet *saveSheet = [[UIActionSheet alloc] initWithTitle:@"Save" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera Roll",@"UIImage",@"UIBezierPath", nil];
+    [saveSheet showInView:self.view];
+}
+#pragma mark - UIActionSheet Delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != actionSheet.cancelButtonIndex){
+        if (buttonIndex == 0){
+            UIImage *drawingImage = [drawingView imageRepresentation];
+            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            [library writeImageToSavedPhotosAlbum:drawingImage.CGImage orientation:ALAssetOrientationUp completionBlock:^(NSURL *assetURL, NSError *error) {
+                NSLog(@"%@",assetURL);
+                NSLog(@"%@",error);
+            }];
+        }else if (buttonIndex == 1){
+            UIImage *drawingImage = [drawingView imageRepresentation];
+            NSLog(@"%@",drawingImage);
+        }else if (buttonIndex == 2){
+            UIBezierPath *path = [drawingView bezierPathRepresentation];
+            NSLog(@"%@",path);
+        }
+    }
 }
 @end
