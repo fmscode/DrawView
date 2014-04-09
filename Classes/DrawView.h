@@ -33,6 +33,8 @@ typedef enum : NSUInteger {
 - (void)drawBezier:(UIBezierPath *)path;
 // Animate the current path.
 - (void)animatePath;
+// Clear current drawing view.
+- (void)clearDrawing;
 // Current UIBezierPath
 - (UIBezierPath *)bezierPathRepresentation;
 // Current UIImage of drawing view

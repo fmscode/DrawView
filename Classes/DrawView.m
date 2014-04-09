@@ -44,7 +44,7 @@
     paths = [NSMutableArray new];
     // Default colors for drawing.
     self.backgroundColor = [UIColor whiteColor];
-    strokeColor = [UIColor redColor];
+    strokeColor = [UIColor blackColor];
     _canEdit = YES;
 }
 - (void)backgroundColor:(UIColor *)color{
@@ -135,6 +135,13 @@
 }
 - (void)refreshCurrentMode{
     [self setMode:_mode];
+}
+- (void)clearDrawing{
+    bezierPath = nil;
+    paths = nil;
+    signLine = nil;
+    [self setNeedsDisplay];
+    [self setupUI];
 }
 #pragma mark - View Draw Reading
 - (UIImage *)imageRepresentation{

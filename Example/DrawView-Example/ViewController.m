@@ -15,6 +15,7 @@
 }
 - (IBAction)loadArchived:(id)sender;
 - (IBAction)saveDrawing:(id)sender;
+- (IBAction)animateDrawing:(id)sender;
 - (IBAction)signatureMode:(id)sender;
 @end
 
@@ -24,7 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"Drawing View";
-    UIBarButtonItem *animateButton = [[UIBarButtonItem alloc] initWithTitle:@"Animate" style:UIBarButtonItemStylePlain target:drawingView action:@selector(animatePath)];
+    UIBarButtonItem *animateButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:drawingView action:@selector(clearDrawing)];
     self.navigationItem.rightBarButtonItem = animateButton;
     UIBarButtonItem *archivedButton = [[UIBarButtonItem alloc] initWithTitle:@"Load" style:UIBarButtonItemStylePlain target:self action:@selector(loadArchived:)];
     self.navigationItem.leftBarButtonItem = archivedButton;
@@ -40,8 +41,10 @@
     // Load an archived array of bezier paths
     UIBezierPath *path = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"test-path" ofType:@"txt"]];
     // Display archived path.
-    [drawingView setDebugBox:YES];
     [drawingView drawBezier:path];
+}
+- (IBAction)animateDrawing:(id)sender{
+    [drawingView animatePath];
 }
 - (IBAction)saveDrawing:(id)sender{
     UIActionSheet *saveSheet = [[UIActionSheet alloc] initWithTitle:@"Save" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera Roll",@"UIImage",@"UIBezierPath", nil];

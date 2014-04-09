@@ -44,6 +44,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lGp-wF-vh6"/>
+                                    <barButtonItem systemItem="play" id="g4y-gn-nI7">
+                                        <connections>
+                                            <action selector="animateDrawing:" destination="vXZ-lx-hvc" id="Wm8-Un-oVV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="F2K-Ob-qL0"/>
                                     <barButtonItem systemItem="action" id="3Fu-wL-ejF">
                                         <connections>
                                             <action selector="saveDrawing:" destination="vXZ-lx-hvc" id="ENw-6S-EQM"/>
@@ -69,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="79"/>
+            <point key="canvasLocation" x="400" y="36"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yuS-UT-qB7">
@@ -87,7 +93,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7b-RY-kBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="79"/>
+            <point key="canvasLocation" x="-14" y="36"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
