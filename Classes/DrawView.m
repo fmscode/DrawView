@@ -15,9 +15,9 @@
     BOOL isAnimating;
     BOOL isDrawingExisting;
     UIColor *strokeColor;
+    UIBezierPath *signLine;
 }
 - (IBAction)undoDrawing:(id)sender;
-
 @end
 
 @implementation DrawView
@@ -67,6 +67,11 @@
             [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
         }
     }
+    
+    if (_mode == SignatureMode){
+        [[UIColor lightGrayColor] setStroke];
+        [signLine strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
+    }
 }
 - (void)drawPath:(CGPathRef)path{
     isDrawingExisting = YES;
@@ -108,6 +113,28 @@
 - (IBAction)undoDrawing:(id)sender{
     [paths removeLastObject];
     [self setNeedsDisplay];
+}
+- (void)setMode:(DrawingMode)mode{
+    _mode = mode;
+    if (mode == DrawingModeDefault){
+        signLine = nil;
+    }else if (mode == SignatureMode){
+        signLine = [UIBezierPath new];
+        signLine.lineCapStyle = kCGLineCapRound;
+        signLine.lineWidth = 3.0f;
+        // Draw the X for the line
+        [signLine moveToPoint:CGPointMake(20, self.frame.size.height-30)];
+        [signLine addLineToPoint:CGPointMake(30, self.frame.size.height-40)];
+        [signLine moveToPoint:CGPointMake(30, self.frame.size.height-30)];
+        [signLine addLineToPoint:CGPointMake(20, self.frame.size.height-40)];
+        // Draw the line for signing on
+        [signLine moveToPoint:CGPointMake(20, self.frame.size.height-20)];
+        [signLine addLineToPoint:CGPointMake(self.frame.size.width-20, self.frame.size.height-20)];
+    }
+    [self setNeedsDisplay];
+}
+- (void)refreshCurrentMode{
+    [self setMode:_mode];
 }
 #pragma mark - View Draw Reading
 - (UIImage *)imageRepresentation{

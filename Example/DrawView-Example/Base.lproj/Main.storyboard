@@ -16,18 +16,31 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-uE-zuv" customClass="DrawView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="458"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-uE-zuv" customClass="DrawView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="69R-FH-ZZh"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="460" id="Fqd-Ro-bgy"/>
+                                </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1aF-qW-WWf">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1aF-qW-WWf">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="G7R-VG-h8E"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="undo" id="wch-aD-rgc">
                                         <connections>
                                             <action selector="undoDrawing:" destination="e1n-uE-zuv" id="34H-tt-JjI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QrV-zP-rJq"/>
+                                    <barButtonItem title="Signature" id="eMC-CD-RzC">
+                                        <connections>
+                                            <action selector="signatureMode:" destination="vXZ-lx-hvc" id="MPa-i9-HYu"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lGp-wF-vh6"/>
@@ -40,6 +53,14 @@
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1aF-qW-WWf" secondAttribute="trailing" id="4Nd-Ky-5WS"/>
+                            <constraint firstAttribute="trailing" secondItem="e1n-uE-zuv" secondAttribute="trailing" id="JaK-Bj-7wE"/>
+                            <constraint firstItem="e1n-uE-zuv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="PlI-jF-tdL"/>
+                            <constraint firstAttribute="bottom" secondItem="1aF-qW-WWf" secondAttribute="bottom" id="aqE-6r-zqM"/>
+                            <constraint firstItem="1aF-qW-WWf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="c0G-QB-vAz"/>
+                            <constraint firstItem="1aF-qW-WWf" firstAttribute="top" secondItem="e1n-uE-zuv" secondAttribute="bottom" id="hiE-At-2od"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j9a-RR-WTE"/>
                     <connections>

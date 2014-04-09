@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    DrawingModeDefault, // Plain drawing view.
+    SignatureMode       // Drawing view with a x and line for signatures.
+} DrawingMode;
+
 @interface DrawView : UIView
 
 // If the drawing view can be drawn on. By default canEdit is true.
 @property (nonatomic) BOOL canEdit;
 // Debug value to add a box around the path when drawing a existing path.
 @property (nonatomic) BOOL debugBox;
+// Current mode for the drawing view. See DrawingMode enum for options.
+@property (nonatomic) DrawingMode mode;
+// Refresh the current drawing mode.
+- (void)refreshCurrentMode;
 // Background color of the drawing view.
 - (void)backgroundColor:(UIColor *)color;
 // The stroke color of the path.

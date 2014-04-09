@@ -15,6 +15,7 @@
 }
 - (IBAction)loadArchived:(id)sender;
 - (IBAction)saveDrawing:(id)sender;
+- (IBAction)signatureMode:(id)sender;
 @end
 
 @implementation ViewController
@@ -45,6 +46,12 @@
 - (IBAction)saveDrawing:(id)sender{
     UIActionSheet *saveSheet = [[UIActionSheet alloc] initWithTitle:@"Save" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera Roll",@"UIImage",@"UIBezierPath", nil];
     [saveSheet showInView:self.view];
+}
+- (IBAction)signatureMode:(id)sender{
+    [drawingView setMode:SignatureMode];
+}
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [drawingView refreshCurrentMode];
 }
 #pragma mark - UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
