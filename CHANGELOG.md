@@ -12,3 +12,5 @@ CocoaPod release
 
 - Support to read out the current path in the drawing view.
 - Updated example showing how to read the current drawing view.
+- Added signature mode.
+- Ability to clear drawing view.
