@@ -15,12 +15,13 @@ In the storyboard under the views Identity Inspector set the view class to ```Dr
 In the implementation file you can setup the drawing view. 
 
 	drawingView.strokeColor = [UIColor blackColor];
+	drawingView.strokeWidth = 25.0f;
 	
-Since DrawView is a subclass of UIView, to change the background just changes the views ```backgroundColor``` property.
+Since DrawView is a subclass of UIView, to change the background just change the ```backgroundColor``` property.
 
 # Usage
 ## Drawing Existing Paths
-You can draw either a existing ```UIBezierPath``` or ```CGPathRef``` by calling either of the following methods respectively.
+You can draw either a existing ```UIBezierPath``` or ```CGPathRef``` by calling either of the following methods.
 
 	- (void)drawBezier:(UIBezierPath *)path;
 	- (void)drawPath:(CGPathRef)path;

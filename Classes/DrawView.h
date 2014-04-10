@@ -17,6 +17,8 @@ typedef enum : NSUInteger {
 
 // Stroke Color
 @property (nonatomic) UIColor *strokeColor;
+// Stroke width
+@property (nonatomic) CGFloat strokeWidth;
 // If the drawing view can be drawn on. By default canEdit is true.
 @property (nonatomic) BOOL canEdit;
 // Debug value to add a box around the path when drawing a existing path.

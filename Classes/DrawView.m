@@ -75,11 +75,11 @@
     bezierPath = [UIBezierPath new];
     bezierPath.CGPath = path;
     bezierPath.lineCapStyle = kCGLineCapRound;
-    bezierPath.lineWidth = 10.0f;
+    bezierPath.lineWidth = _strokeWidth;
     bezierPath.miterLimit = 0.0f;
     // If iPad apply the scale first so the paths bounds is in its final state.
     if ([[[UIDevice currentDevice] model] rangeOfString:@"iPad"].location != NSNotFound){
-        [bezierPath setLineWidth:20.0];
+        [bezierPath setLineWidth:_strokeWidth];
         CGAffineTransform scaleTransform = CGAffineTransformMakeScale(2, 2);
         [bezierPath applyTransform:scaleTransform];
     }
@@ -178,7 +178,7 @@
     animateLayer.path = animatingPath.CGPath;
     animateLayer.frame = self.frame;
     animateLayer.strokeColor = [_strokeColor CGColor];
-    animateLayer.lineWidth = 10.0f;
+    animateLayer.lineWidth = _strokeWidth;
     animateLayer.miterLimit = 0.0f;
     animateLayer.lineCap = @"round";
     // Create animation of path of the stroke end.
@@ -202,7 +202,7 @@
     if (_canEdit){
         bezierPath = [[UIBezierPath alloc] init];
         [bezierPath setLineCapStyle:kCGLineCapRound];
-        [bezierPath setLineWidth:10.0];
+        [bezierPath setLineWidth:_strokeWidth];
         [bezierPath setMiterLimit:0];
         
         UITouch *currentTouch = [[touches allObjects] objectAtIndex:0];

@@ -31,6 +31,7 @@
     self.navigationItem.leftBarButtonItem = archivedButton;
     // Drawing view setup.
     drawingView.strokeColor = [UIColor redColor];
+    drawingView.strokeWidth = 25.0f;
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
