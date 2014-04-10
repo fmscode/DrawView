@@ -14,10 +14,9 @@
     CAShapeLayer *animateLayer;
     BOOL isAnimating;
     BOOL isDrawingExisting;
-    UIColor *strokeColor;
+    UIBezierPath *signLine;
 }
 - (IBAction)undoDrawing:(id)sender;
-
 @end
 
 @implementation DrawView
@@ -44,20 +43,17 @@
     paths = [NSMutableArray new];
     // Default colors for drawing.
     self.backgroundColor = [UIColor whiteColor];
-    strokeColor = [UIColor redColor];
+    _strokeColor = [UIColor blackColor];
     _canEdit = YES;
 }
-- (void)backgroundColor:(UIColor *)color{
-    self.backgroundColor = color;
-}
-- (void)strokeColor:(UIColor *)color{
-    strokeColor = color;
+- (void)setStrokeColor:(UIColor *)strokeColor{
+    _strokeColor = strokeColor;
 }
 #pragma mark - View Drawing
 - (void)drawRect:(CGRect)rect{
     // Drawing code
     if (!isAnimating){
-        [strokeColor setStroke];
+        [_strokeColor setStroke];
         if (!isDrawingExisting){
             // Need to merge all the paths into a single path.
             for (UIBezierPath *path in paths){
@@ -67,6 +63,11 @@
             [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
         }
     }
+    
+    if (_mode == SignatureMode){
+        [[UIColor lightGrayColor] setStroke];
+        [signLine strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
+    }
 }
 - (void)drawPath:(CGPathRef)path{
     isDrawingExisting = YES;
@@ -74,11 +75,11 @@
     bezierPath = [UIBezierPath new];
     bezierPath.CGPath = path;
     bezierPath.lineCapStyle = kCGLineCapRound;
-    bezierPath.lineWidth = 10.0f;
+    bezierPath.lineWidth = _strokeWidth;
     bezierPath.miterLimit = 0.0f;
     // If iPad apply the scale first so the paths bounds is in its final state.
     if ([[[UIDevice currentDevice] model] rangeOfString:@"iPad"].location != NSNotFound){
-        [bezierPath setLineWidth:20.0];
+        [bezierPath setLineWidth:_strokeWidth];
         CGAffineTransform scaleTransform = CGAffineTransformMakeScale(2, 2);
         [bezierPath applyTransform:scaleTransform];
     }
@@ -109,6 +110,55 @@
     [paths removeLastObject];
     [self setNeedsDisplay];
 }
+- (void)setMode:(DrawingMode)mode{
+    _mode = mode;
+    if (mode == DrawingModeDefault){
+        signLine = nil;
+    }else if (mode == SignatureMode){
+        signLine = [UIBezierPath new];
+        signLine.lineCapStyle = kCGLineCapRound;
+        signLine.lineWidth = 3.0f;
+        // Draw the X for the line
+        [signLine moveToPoint:CGPointMake(20, self.frame.size.height-30)];
+        [signLine addLineToPoint:CGPointMake(30, self.frame.size.height-40)];
+        [signLine moveToPoint:CGPointMake(30, self.frame.size.height-30)];
+        [signLine addLineToPoint:CGPointMake(20, self.frame.size.height-40)];
+        // Draw the line for signing on
+        [signLine moveToPoint:CGPointMake(20, self.frame.size.height-20)];
+        [signLine addLineToPoint:CGPointMake(self.frame.size.width-20, self.frame.size.height-20)];
+    }
+    [self setNeedsDisplay];
+}
+- (void)refreshCurrentMode{
+    [self setMode:_mode];
+}
+- (void)clearDrawing{
+    bezierPath = nil;
+    paths = nil;
+    signLine = nil;
+    [self setNeedsDisplay];
+    [self setupUI];
+}
+#pragma mark - View Draw Reading
+- (UIImage *)imageRepresentation{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [self.layer renderInContext:context];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
+}
+- (UIBezierPath *)bezierPathRepresentation{
+    UIBezierPath *singleBezPath = [UIBezierPath new];
+    if (paths.count > 0){
+        for (UIBezierPath *path in paths){
+            [singleBezPath appendPath:path];
+        }
+    }else{
+        singleBezPath = bezierPath;
+    }
+    return singleBezPath;
+}
 #pragma mark - Animation
 - (void)animatePath{
     UIBezierPath *animatingPath = [UIBezierPath new];
@@ -127,8 +177,8 @@
     animateLayer.fillColor = nil;
     animateLayer.path = animatingPath.CGPath;
     animateLayer.frame = self.frame;
-    animateLayer.strokeColor = [strokeColor CGColor];
-    animateLayer.lineWidth = 10.0f;
+    animateLayer.strokeColor = [_strokeColor CGColor];
+    animateLayer.lineWidth = _strokeWidth;
     animateLayer.miterLimit = 0.0f;
     animateLayer.lineCap = @"round";
     // Create animation of path of the stroke end.
@@ -152,7 +202,7 @@
     if (_canEdit){
         bezierPath = [[UIBezierPath alloc] init];
         [bezierPath setLineCapStyle:kCGLineCapRound];
-        [bezierPath setLineWidth:10.0];
+        [bezierPath setLineWidth:_strokeWidth];
         [bezierPath setMiterLimit:0];
         
         UITouch *currentTouch = [[touches allObjects] objectAtIndex:0];
