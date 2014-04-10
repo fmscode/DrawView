@@ -30,8 +30,7 @@
     UIBarButtonItem *archivedButton = [[UIBarButtonItem alloc] initWithTitle:@"Load" style:UIBarButtonItemStylePlain target:self action:@selector(loadArchived:)];
     self.navigationItem.leftBarButtonItem = archivedButton;
     // Drawing view setup.
-    [drawingView setBackgroundColor:[UIColor whiteColor]];
-    [drawingView strokeColor:[UIColor blackColor]];
+    drawingView.strokeColor = [UIColor redColor];
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];

@@ -14,8 +14,9 @@ In the storyboard under the views Identity Inspector set the view class to ```Dr
 
 In the implementation file you can setup the drawing view. 
 
-	[drawingView setBackgroundColor:[UIColor whiteColor]];
-	[drawingView strokeColor:[UIColor blackColor]];
+	drawingView.strokeColor = [UIColor blackColor];
+	
+Since DrawView is a subclass of UIView, to change the background just changes the views ```backgroundColor``` property.
 
 # Usage
 ## Drawing Existing Paths

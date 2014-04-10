@@ -15,6 +15,8 @@ typedef enum : NSUInteger {
 
 @interface DrawView : UIView
 
+// Stroke Color
+@property (nonatomic) UIColor *strokeColor;
 // If the drawing view can be drawn on. By default canEdit is true.
 @property (nonatomic) BOOL canEdit;
 // Debug value to add a box around the path when drawing a existing path.
@@ -23,10 +25,6 @@ typedef enum : NSUInteger {
 @property (nonatomic) DrawingMode mode;
 // Refresh the current drawing mode.
 - (void)refreshCurrentMode;
-// Background color of the drawing view.
-- (void)backgroundColor:(UIColor *)color;
-// The stroke color of the path.
-- (void)strokeColor:(UIColor *)color;
 // Draw a CGPath that already exists. canEdit is set to false if this is called.
 - (void)drawPath:(CGPathRef)path;
 // Draw a UIBezierPath that already exists. canEdit is set to false if this is called.

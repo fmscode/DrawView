@@ -14,7 +14,6 @@
     CAShapeLayer *animateLayer;
     BOOL isAnimating;
     BOOL isDrawingExisting;
-    UIColor *strokeColor;
     UIBezierPath *signLine;
 }
 - (IBAction)undoDrawing:(id)sender;
@@ -44,20 +43,17 @@
     paths = [NSMutableArray new];
     // Default colors for drawing.
     self.backgroundColor = [UIColor whiteColor];
-    strokeColor = [UIColor blackColor];
+    _strokeColor = [UIColor blackColor];
     _canEdit = YES;
 }
-- (void)backgroundColor:(UIColor *)color{
-    self.backgroundColor = color;
-}
-- (void)strokeColor:(UIColor *)color{
-    strokeColor = color;
+- (void)setStrokeColor:(UIColor *)strokeColor{
+    _strokeColor = strokeColor;
 }
 #pragma mark - View Drawing
 - (void)drawRect:(CGRect)rect{
     // Drawing code
     if (!isAnimating){
-        [strokeColor setStroke];
+        [_strokeColor setStroke];
         if (!isDrawingExisting){
             // Need to merge all the paths into a single path.
             for (UIBezierPath *path in paths){
@@ -181,7 +177,7 @@
     animateLayer.fillColor = nil;
     animateLayer.path = animatingPath.CGPath;
     animateLayer.frame = self.frame;
-    animateLayer.strokeColor = [strokeColor CGColor];
+    animateLayer.strokeColor = [_strokeColor CGColor];
     animateLayer.lineWidth = 10.0f;
     animateLayer.miterLimit = 0.0f;
     animateLayer.lineCap = @"round";
