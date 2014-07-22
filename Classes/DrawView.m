@@ -176,7 +176,6 @@
     animateLayer = [[CAShapeLayer alloc] init];
     animateLayer.fillColor = nil;
     animateLayer.path = animatingPath.CGPath;
-    animateLayer.frame = self.frame;
     animateLayer.strokeColor = [_strokeColor CGColor];
     animateLayer.lineWidth = _strokeWidth;
     animateLayer.miterLimit = 0.0f;
