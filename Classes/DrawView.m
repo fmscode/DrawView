@@ -53,17 +53,21 @@
 - (void)drawRect:(CGRect)rect{
     // Drawing code
     if (!isAnimating){
-        [_strokeColor setStroke];
         if (!isDrawingExisting){
             // Need to merge all the paths into a single path.
-            for (UIBezierPath *path in paths){
+
+            // for (UIBezierPath *path in paths){
+            for (NSArray *ptuple in paths){
+                UIBezierPath *path = (UIBezierPath*)ptuple[0];
+                UIColor *strkColor = (UIColor*)ptuple[1];
+                [strkColor setStroke];
                 [path strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
             }
         }else{
             [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
         }
     }
-    
+
     if (_mode == SignatureMode){
         [[UIColor lightGrayColor] setStroke];
         [signLine strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
@@ -90,11 +94,11 @@
     CGRect cellBounds = self.bounds;
     CGFloat centerX = CGRectGetMidX(cellBounds);
     CGFloat centerY = CGRectGetMidY(cellBounds);
-    
+
     [bezierPath applyTransform:CGAffineTransformMakeTranslation(centerX-charX, centerY-charY)];
-    
+
     [self setNeedsDisplay];
-    
+
     // Debugging bounds view.
     if (_debugBox){
         UIView *blockView = [[UIView alloc] initWithFrame:CGRectMake(bezierPath.bounds.origin.x, bezierPath.bounds.origin.y, bezierPath.bounds.size.width, bezierPath.bounds.size.height)];
@@ -151,7 +155,9 @@
 - (UIBezierPath *)bezierPathRepresentation{
     UIBezierPath *singleBezPath = [UIBezierPath new];
     if (paths.count > 0){
-        for (UIBezierPath *path in paths){
+
+        for (NSArray *ptuple in paths) {
+            UIBezierPath *path = ptuple[0];
             [singleBezPath appendPath:path];
         }
     }else{
@@ -163,7 +169,9 @@
 - (void)animatePath{
     UIBezierPath *animatingPath = [UIBezierPath new];
     if (_canEdit){
-        for (UIBezierPath *path in paths){
+
+        for (NSArray *ptuple in paths){
+            UIBezierPath *path = ptuple[0];
             [animatingPath appendPath:path];
         }
     }else{
@@ -204,10 +212,10 @@
         [bezierPath setLineCapStyle:kCGLineCapRound];
         [bezierPath setLineWidth:_strokeWidth];
         [bezierPath setMiterLimit:0];
-        
         UITouch *currentTouch = [[touches allObjects] objectAtIndex:0];
         [bezierPath moveToPoint:[currentTouch locationInView:self]];
-        [paths addObject:bezierPath];
+        NSArray *ptuple = @[bezierPath, _strokeColor];
+        [paths addObject:ptuple];
     }
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{

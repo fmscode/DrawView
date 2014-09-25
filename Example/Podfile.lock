@@ -1,5 +1,5 @@
 PODS:
-  - DrawView (0.1.0)
+  - DrawView (1.0.1)
 
 DEPENDENCIES:
   - DrawView (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  DrawView: d54952fd5da4c9f214b41373a393b1f9162d76f5
+  DrawView: 1d404b58a05dd9586231be75153dc59893d67729
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1
