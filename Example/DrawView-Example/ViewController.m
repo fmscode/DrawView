@@ -32,6 +32,8 @@
     // Drawing view setup.
     drawingView.strokeColor = [UIColor redColor];
     drawingView.strokeWidth = 25.0f;
+    // customize our color button
+    [_colorBtn setTintColor:drawingView.strokeColor];
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -43,9 +45,21 @@
     // Display archived path.
     [drawingView drawBezier:path];
 }
+
+- (IBAction)changeToBlue:(id)sender{
+    if ([_colorBtn.tintColor isEqual:[UIColor redColor]]) {
+        drawingView.strokeColor = [UIColor blueColor];
+        _colorBtn.tintColor = [UIColor blueColor];
+    } else {
+        drawingView.strokeColor = [UIColor redColor];
+        _colorBtn.tintColor = [UIColor redColor];
+    }
+}
+
 - (IBAction)animateDrawing:(id)sender{
     [drawingView animatePath];
 }
+
 - (IBAction)saveDrawing:(id)sender{
     UIActionSheet *saveSheet = [[UIActionSheet alloc] initWithTitle:@"Save" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera Roll",@"UIImage",@"UIBezierPath", nil];
     [saveSheet showInView:self.view];

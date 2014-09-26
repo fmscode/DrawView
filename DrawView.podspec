@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "DrawView"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "Subclass of UIView that supports drawing."
   s.homepage         = "https://github.com/fmscode/DrawView"
   s.license          = 'MIT'
