@@ -8,9 +8,24 @@
 
 #import "DrawView.h"
 
+#pragma mark -
+#pragma mark DrawPath
+
+
+@interface ColorPath : UIBezierPath
+@property UIColor *color;
+@end
+
+@implementation ColorPath
+@end
+
+
+#pragma mark -
+#pragma mark DrawView
+
 @interface DrawView () {
     NSMutableArray *paths;
-    UIBezierPath *bezierPath;
+    ColorPath *bezierPath;
     CAShapeLayer *animateLayer;
     BOOL isAnimating;
     BOOL isDrawingExisting;
@@ -57,13 +72,12 @@
             // Need to merge all the paths into a single path.
 
             // for (UIBezierPath *path in paths){
-            for (NSArray *ptuple in paths){
-                UIBezierPath *path = (UIBezierPath*)ptuple[0];
-                UIColor *strkColor = (UIColor*)ptuple[1];
-                [strkColor setStroke];
+            for (ColorPath *path in paths){
+                [path.color setStroke];
                 [path strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
             }
         }else{
+            [bezierPath.color setStroke];
             [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
         }
     }
@@ -76,7 +90,7 @@
 - (void)drawPath:(CGPathRef)path{
     isDrawingExisting = YES;
     _canEdit = NO;
-    bezierPath = [UIBezierPath new];
+    bezierPath = [ColorPath new];
     bezierPath.CGPath = path;
     bezierPath.lineCapStyle = kCGLineCapRound;
     bezierPath.lineWidth = _strokeWidth;
@@ -107,7 +121,7 @@
         [self addSubview:blockView];
     }
 }
-- (void)drawBezier:(UIBezierPath *)path{
+- (void)drawBezier:(ColorPath *)path{
     [self drawPath:path.CGPath];
 }
 - (IBAction)undoDrawing:(id)sender{
@@ -153,11 +167,10 @@
     return viewImage;
 }
 - (UIBezierPath *)bezierPathRepresentation{
-    UIBezierPath *singleBezPath = [UIBezierPath new];
+    ColorPath *singleBezPath = [ColorPath new];
     if (paths.count > 0){
 
-        for (NSArray *ptuple in paths) {
-            UIBezierPath *path = ptuple[0];
+        for (ColorPath *path in paths) {
             [singleBezPath appendPath:path];
         }
     }else{
@@ -170,8 +183,7 @@
     UIBezierPath *animatingPath = [UIBezierPath new];
     if (_canEdit){
 
-        for (NSArray *ptuple in paths){
-            UIBezierPath *path = ptuple[0];
+        for (ColorPath *path in paths){
             [animatingPath appendPath:path];
         }
     }else{
@@ -208,14 +220,14 @@
 #pragma mark - Touch Detecting
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     if (_canEdit){
-        bezierPath = [[UIBezierPath alloc] init];
+        bezierPath = [[ColorPath alloc] init];
         [bezierPath setLineCapStyle:kCGLineCapRound];
         [bezierPath setLineWidth:_strokeWidth];
         [bezierPath setMiterLimit:0];
         UITouch *currentTouch = [[touches allObjects] objectAtIndex:0];
         [bezierPath moveToPoint:[currentTouch locationInView:self]];
-        NSArray *ptuple = @[bezierPath, _strokeColor];
-        [paths addObject:ptuple];
+        bezierPath.color = _strokeColor;
+        [paths addObject:bezierPath];
     }
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
