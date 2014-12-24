@@ -3,13 +3,17 @@ Subclass of UIView that supports drawing.
 
 ![](readmeassets/screen_shot_3.png)
 
-# Basic Usage
+# Installation
 Using CocoaPods
 
     pod "DrawView"
 
 To install without CocoaPods, drag the DrawView.h/.m from the classes folder to your project.
 
+### Swift Installation
+To use DrawView in a Swift project you will need to drag the ```DrawView.swift``` file in the Classes folder to your project. If you were using the Objective-C version some of the function names have been changed for clarity. The Swift version of DrawView should be considered a Beta.
+
+# Usage
 In the storyboard under the views Identity Inspector set the view class to ```DrawView```. 
 
 ![](readmeassets/screen_shot_1.png)
@@ -18,10 +22,9 @@ In the implementation file you can setup the drawing view.
 
     drawingView.strokeColor = [UIColor blackColor];
     drawingView.strokeWidth = 25.0f;
-	
+    
 Since DrawView is a subclass of UIView the background of the view can be changed by altering the view's ```backgroundColor``` property.
 
-# Usage
 ## Drawing Existing Paths
 You can draw either an existing ```UIBezierPath``` or ```CGPathRef``` by calling either of the following methods.
 
