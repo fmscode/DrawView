@@ -24,9 +24,27 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLd-6Q-yq2">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem systemItem="undo" id="TnP-Ul-q77">
+                                        <connections>
+                                            <action selector="undo:" destination="vXZ-lx-hvc" id="Buq-c7-Qz7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EFx-qZ-wcH"/>
+                                    <barButtonItem title="Signature Mode" id="nVv-eH-4lN">
+                                        <connections>
+                                            <action selector="signatureMode:" destination="vXZ-lx-hvc" id="P6k-r5-kfz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wlG-wb-ckN"/>
                                     <barButtonItem title="Animate" id="r90-Dr-oGz">
                                         <connections>
                                             <action selector="animate:" destination="vXZ-lx-hvc" id="F4I-rw-M18"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XFi-hL-XSI"/>
+                                    <barButtonItem systemItem="action" id="Uk2-8d-5cx">
+                                        <connections>
+                                            <action selector="saveCanvas:" destination="vXZ-lx-hvc" id="gwh-98-NdH"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

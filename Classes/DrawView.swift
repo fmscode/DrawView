@@ -18,7 +18,6 @@ class DrawView: UIView {
         case None
         case Editable
     }
-    
     var drawingMode: DrawingMode = .Default {
         didSet {
             self.setNeedsDisplay()

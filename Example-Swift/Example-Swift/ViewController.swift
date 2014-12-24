@@ -28,15 +28,29 @@ class ViewController: UIViewController {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         self.mainDrawView.refreshCanvas()
     }
+    // MARK: Class Actions
+    
+    @IBAction func undo(sender: AnyObject) {
+        self.mainDrawView.undoLastPath()
+    }
+    @IBAction func signatureMode(sender: AnyObject) {
+        if self.mainDrawView.drawingMode == .Signature {
+            self.mainDrawView.drawingMode = .Default
+        }else{
+            self.mainDrawView.drawingMode = .Signature
+        }
+    }
+    @IBAction func saveCanvas(sender: AnyObject) {
+        
+    }
     @IBAction func animate(sender: AnyObject) {
         self.mainDrawView.animateCanvas()
     }
-    
-    
     // For iOS 7 support
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         self.mainDrawView.refreshCanvas()
     }
+    // For iOS 8 support
     override func viewDidLayoutSubviews() {
         self.mainDrawView.refreshCanvas()
     }
