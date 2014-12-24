@@ -17,22 +17,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zP-cv-0Lm" customClass="DrawView" customModule="Example_Swift" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRg-gY-UfA" customClass="DrawView" customModule="Example_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLd-6Q-yq2">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Animate" id="r90-Dr-oGz">
+                                        <connections>
+                                            <action selector="animate:" destination="vXZ-lx-hvc" id="F4I-rw-M18"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9zP-cv-0Lm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="BQA-oz-F9g"/>
-                            <constraint firstItem="9zP-cv-0Lm" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="Kcm-Qa-EcC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9zP-cv-0Lm" secondAttribute="trailing" constant="-16" id="osA-Kp-OJY"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="9zP-cv-0Lm" secondAttribute="bottom" id="xVH-HV-5b7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bLd-6Q-yq2" secondAttribute="trailing" constant="-16" id="7zG-8r-Oq3"/>
+                            <constraint firstItem="vRg-gY-UfA" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="FcP-SC-1Pr"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bLd-6Q-yq2" secondAttribute="bottom" id="N4U-y5-0PM"/>
+                            <constraint firstItem="bLd-6Q-yq2" firstAttribute="top" secondItem="vRg-gY-UfA" secondAttribute="bottom" id="Uo6-bk-AD8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vRg-gY-UfA" secondAttribute="trailing" constant="-16" id="ila-OL-OZh"/>
+                            <constraint firstItem="bLd-6Q-yq2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="mfm-hs-dix"/>
+                            <constraint firstItem="vRg-gY-UfA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="yfK-34-ejY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainDrawView" destination="vRg-gY-UfA" id="aKO-i0-VDV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="132" y="623"/>
         </scene>
     </scenes>
 </document>
