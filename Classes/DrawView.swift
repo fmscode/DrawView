@@ -163,7 +163,6 @@ class DrawView: UIView {
         self.animationLayer = CAShapeLayer()
         self.animationLayer?.fillColor = nil
         self.animationLayer?.path = animatingPath.CGPath
-        self.animationLayer?.frame = self.frame
         self.animationLayer?.strokeColor = self.strokeColor.CGColor
         self.animationLayer?.lineWidth = self.strokeWidth
         self.animationLayer?.miterLimit = 0.0
