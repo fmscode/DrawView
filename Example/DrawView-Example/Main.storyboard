@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3aR-nV-sw1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3aR-nV-sw1">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,21 +17,12 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-uE-zuv" customClass="DrawView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-uE-zuv" customClass="DrawView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="69R-FH-ZZh"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="460" id="Fqd-Ro-bgy"/>
-                                </constraints>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1aF-qW-WWf">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="G7R-VG-h8E"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="undo" id="wch-aD-rgc">
                                         <connections>
@@ -60,12 +52,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="1aF-qW-WWf" secondAttribute="trailing" id="4Nd-Ky-5WS"/>
-                            <constraint firstAttribute="trailing" secondItem="e1n-uE-zuv" secondAttribute="trailing" id="JaK-Bj-7wE"/>
-                            <constraint firstItem="e1n-uE-zuv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="PlI-jF-tdL"/>
-                            <constraint firstAttribute="bottom" secondItem="1aF-qW-WWf" secondAttribute="bottom" id="aqE-6r-zqM"/>
-                            <constraint firstItem="1aF-qW-WWf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="c0G-QB-vAz"/>
-                            <constraint firstItem="1aF-qW-WWf" firstAttribute="top" secondItem="e1n-uE-zuv" secondAttribute="bottom" id="hiE-At-2od"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1aF-qW-WWf" secondAttribute="trailing" constant="-16" id="4Qy-9E-icL"/>
+                            <constraint firstItem="e1n-uE-zuv" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="95W-aa-Arq"/>
+                            <constraint firstItem="1aF-qW-WWf" firstAttribute="top" secondItem="e1n-uE-zuv" secondAttribute="bottom" id="9e3-Ca-7NC"/>
+                            <constraint firstItem="e1n-uE-zuv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Bf7-3x-IAz"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1aF-qW-WWf" secondAttribute="bottom" id="vez-Og-d68"/>
+                            <constraint firstItem="1aF-qW-WWf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="vj3-1v-iKH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e1n-uE-zuv" secondAttribute="trailing" constant="-16" id="wjN-Xs-7Yx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j9a-RR-WTE"/>
