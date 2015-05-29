@@ -208,6 +208,8 @@
         [bezierPath moveToPoint:[currentTouch locationInView:self]];
         [paths addObject:bezierPath];
     }
+    
+    [super touchesBegan:touches withEvent:event];
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     if (_canEdit){
